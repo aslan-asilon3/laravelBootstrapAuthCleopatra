@@ -1,0 +1,82 @@
+/// show
+                        <!-- modal tambah data -->
+                        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Tambah Data
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('produk.create') }}" method="post">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">ID Produk</span>
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+                        <!-- end modal tambah data -->
+
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
+
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>No</th>
+                            <th>Kode Produk</th>
+                            <th>Nama Produk</th>
+                            <th>Harga</th>
+                            <th>Jumlah/Qty</th>
+                            <th>Gambar</th>
+                            <th>Deskripsi</th>
+                            <th>Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($products as $product)
+                          <tr>
+                          <td>{{ ++$i }}</td>
+                            <td>{{ $product->produk_kode }}</td>
+                            <td>{{ $product->produk_nama }}</td>
+                            <td>{{ $product->produk_harga }}</td>
+                            <td>{{ $product->produk_jumlah }}</td>
+                            <td>{{ $product->produk_gambar }}</td>
+                            <td>{{ $product->produk_deskripsi }}</td>
+                            <td>
+                            <form action="{{ route('produk.destroy',$product->id) }}" method="POST">
+            
+                                <a class="btn btn-info" href="{{ route('produk.show',$product->id) }}">Show</a>
+                
+                                <a class="btn btn-primary" href="{{ route('produk.edit',$product->id) }}">Edit</a>
+            
+                                @csrf
+                                @method('DELETE')
+                
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+
+
+

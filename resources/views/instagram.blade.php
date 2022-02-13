@@ -9,7 +9,7 @@
  
 <div class="container">
     <h2>Laravel Instagram API tutorial with example</h2><br/>
- 
+
  
     <form method="GET" role="form">
  
