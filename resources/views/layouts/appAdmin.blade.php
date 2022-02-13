@@ -133,6 +133,12 @@
                   <p>CRUD 3 UserYajra - Yajra Datatables</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>CRUD 4 Studet - Upload Image</p>
+                </a>
+              </li>
             </ul>
           </li>
 
